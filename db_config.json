@@ -1,0 +1,8 @@
+{
+    "connection": "mongodb://localhost:27017/ChatDB",
+    "options": {
+        "auto_reconnect": true,
+        "poolSize": 40,
+        "useNewUrlParser": true
+    }
+}
