@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const MessageContr = require('../db_controllers/MessageContoller');
+const MessageService = require('../services/MessageService');
 
 router.get('/', async (req, res) => {
   const messages = await MessageContr.getAll();
@@ -13,8 +14,9 @@ router.get('/:id', async (req, res) => {
 });
 
 router.get('/:id/receivers', async (req, res) => {
-  const user = await MessageContr.getUserReceiversByID(req.params.id); 
-  res.send(user);
+  const receivers = await MessageService.getUserReceivers(req.params.id);
+  console.log(receivers);  
+  res.send(receivers);
 });
 
 router.post('/', async (req, res) => {

@@ -35,10 +35,10 @@ module.exports = {
         try {
             const users = await Message
                 .find({'senderID': userID}, {'receiverID': 1, "_id": 0})
-                .populate({
-                    path: 'receiverID',
-                    select: 'full_name email'
-                })
+                // .populate({
+                //     path: 'receiverID',
+                //     select: 'full_name email'
+                // })
                 .then(docs => { return docs })
                 .catch(err => { return err });
             return {
