@@ -15,7 +15,6 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/receivers', async (req, res) => {
   const receivers = await MessageService.getUserReceivers(req.params.id);
-  console.log(receivers);  
   res.send(receivers);
 });
 
