@@ -1,4 +1,5 @@
 # Chat
+###### db_controllers is not using, just forget about it :)
 
 ## Routes list: Users and Messages;
 
