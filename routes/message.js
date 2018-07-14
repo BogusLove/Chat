@@ -1,20 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const MessageContr = require('../db_controllers/MessageContoller');
-const MessageService = require('../services/MessageService');
+const MessageRepository = require('../repositories/MessageRepository');
 
 router.get('/', async (req, res) => {
-  const messages = await MessageContr.getAll();
+  const messages = await MessageRepository.getAll();
   res.send(messages);
 });
 
 router.get('/:id', async (req, res) => {
-  const messages = await MessageContr.getOneByID(req.params.id);
+  const messages = await MessageRepository.getOneByID(req.params.id);
   res.send(messages);
 });
 
 router.get('/:id/receivers', async (req, res) => {
-  const receivers = await MessageService.getUserReceivers(req.params.id);
+  const receivers = await MessageRepository.getUserReceiversByID(req.params.id);
   res.send(receivers);
 });
 
@@ -24,7 +23,7 @@ router.post('/', async (req, res) => {
     receiverID: req.body.receiverID,
     body: req.body.body
   };
-  const response = await MessageContr.insert(newMessage);
+  const response = await MessageRepository.insert(newMessage);
   res.send(response);
 });
 
@@ -34,12 +33,12 @@ router.put('/:id', async (req, res) => {
     receiverID: req.body.receiverID,
     body: req.body.body
   };
-  const response = await MessageContr.update(req.params.id, newMessage);
+  const response = await MessageRepository.update(req.params.id, newMessage);
   res.send(response);
 });
 
 router.delete('/:id', async (req, res) => {
-  const response = await MessageContr.remove(req.params.id);
+  const response = await MessageRepository.removeByID(req.params.id);
   res.send(response);
 });
 
